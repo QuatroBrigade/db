@@ -17,7 +17,7 @@ class POIController extends Controller {
 
         $data = DB::table('points_of_interest')
             ->select(['points_of_interest.id', 'points_of_interest.name', 'points_of_interest.typ_0', 'points_of_interest.typ_1', 'points_of_interest.x', 'points_of_interest.y', 'points_of_interest.filter_type'])
-            ->whereRaw('ST_Contains(poly_15, POINT(x,y))')
+            ->whereRaw('ST_Contains(poly_15, POINT(:x, :y))', ['x' => $x, 'y' => $y])
             ->get();
 
 //        die(var_dump(json_decode($data)));

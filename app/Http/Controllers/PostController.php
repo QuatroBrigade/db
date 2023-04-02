@@ -88,7 +88,7 @@ class PostController extends Controller
             return response(['err' => 'post data wasnt loaded. err:'.$e->getMessage()])->setStatusCode(400);
         }
 
-        return true;
+        return response(['status' => 'ok'])->setStatusCode(200);
     }
 
     public function postPromote(Request $request, int $postId) {
@@ -106,7 +106,7 @@ class PostController extends Controller
             ])
             ->update(['is_promoted' => $promote]);
 
-        return $aff;
+        return response(['status' => 'ok'])->setStatusCode(200);
 
     }
 
