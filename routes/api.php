@@ -31,4 +31,6 @@ Route::post('/post/new', [\App\Http\Controllers\PostController::class, 'newPost'
 Route::post('/user/new', [\App\Http\Controllers\UserController::class, 'newUser']);
 Route::get('/user/{userId}', [\App\Http\Controllers\UserController::class, 'getUserById']);
 Route::post('/post/{postId}/vote/{userId}', [\App\Http\Controllers\PostController::class, 'userPostVote']);
+Route::post('/poi', [\App\Http\Controllers\POIController::class, 'poi']);
+Route::get('/poi/filterlist', [\App\Http\Controllers\POIController::class, 'poiFilterlist']);
 

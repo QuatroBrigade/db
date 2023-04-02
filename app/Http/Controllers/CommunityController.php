@@ -19,7 +19,8 @@ class CommunityController extends Controller
 
         $data = DB::table('post')
             ->join('communities_posts', 'communities_posts.post_id', '=', 'post.post_id')
-            ->where("communities_posts.community_id", $communityId);
+            ->where("communities_posts.community_id", $communityId)
+            ->orderBy('post.cdate', 'desc');
 
         if($limit) {
             $data->limit($limit);
