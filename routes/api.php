@@ -26,7 +26,7 @@ Route::get('/community', [\App\Http\Controllers\CommunityController::class, 'get
 Route::get('/community/{id}', [\App\Http\Controllers\CommunityController::class, 'getCommunityById']);
 Route::get('/post/{postId}', [\App\Http\Controllers\PostController::class, 'getPostById']);
 Route::get('/post/{postId}/votes', [\App\Http\Controllers\PostController::class, 'getWithVotes']);
-Route::get('/post/promote/{postId}', [\App\Http\Controllers\PostController::class, 'postPromote']);
+Route::post('/post/promote/{postId}', [\App\Http\Controllers\PostController::class, 'postPromote']);
 Route::post('/post/new', [\App\Http\Controllers\PostController::class, 'newPost']);
 Route::post('/user/new', [\App\Http\Controllers\UserController::class, 'newUser']);
 Route::get('/user/{userId}', [\App\Http\Controllers\UserController::class, 'getUserById']);
