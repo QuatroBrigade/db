@@ -92,22 +92,25 @@ class PostController extends Controller
     }
 
     public function postPromote(Request $request, int $postId) {
-        $communityId = $request->get('communityId');
-        $promote = $request->get('promote');
+        try {
+            $communityId = $request->get('communityId');
+            $promote = $request->get('promote');
 
-        if(!isset($communityId) || !isset($promote)) {
-            return response(['err' => 'communityId and promote are both required parameters!'])->setStatusCode(400);
+            if (!isset($communityId) || !isset($promote)) {
+                return response(['err' => 'communityId and promote are both required parameters!'])->setStatusCode(400);
+            }
+
+            $aff = DB::table('communities_posts')
+                ->where([
+                    'community_id' => $communityId,
+                    'post_id' => $postId
+                ])
+                ->update(['is_promoted' => $promote]);
+
+            return response(['status' => 'ok'])->setStatusCode(200);
+        } catch (\Exception $e) {
+            return response(['status' => 'err'])->setStatusCode(500);
         }
-
-        $aff = DB::table('communities_posts')
-            ->where([
-                'community_id' => $communityId,
-                'post_id' => $postId
-            ])
-            ->update(['is_promoted' => $promote]);
-
-        return response(['status' => 'ok'])->setStatusCode(200);
-
     }
 
     public function userPostVote(Request $request, $postId, $userId) {
